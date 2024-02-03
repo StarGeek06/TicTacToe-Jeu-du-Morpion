@@ -2,55 +2,10 @@ import tkinter as tk
 from tkinter import messagebox
 import random
 
-#Faire la grille
-def makeboard(grille):
-    for row in range(3):
-        for col in range(3):
-            print(grille[row][col], end='')
-            if col < 2:
-                print(' | ', end='')
-        print()
-        if row < 2:
-            print("---------")
 
 #On va vérifier que la grille est pleine
 def isfull(grille):
     return all(all(cell != '' for cell in row) for row in grille)
-
-#Vérifier les possibilités de gagner
-def winner(grille):
-
-    #Gagner sur les lignes
-    for row in range(3):
-        if grille[row][0] == grille[row][1] == grille[row][2] and grille[row][0] != '':
-            return True
-    
-    #Gagner sur les colonnes
-    for col in range(3):
-        if grille[0][col] == grille[1][col] == grille[2][col] and grille[0][col] != '':
-            return True
-
-    #Gagner sur les diagonales
-    if grille[0][0] == grille[1][1] == grille[2][2] and grille[0][0] != '':
-        return True
-
-    if grille[0][2] == grille[1][1] == grille[2][0] and grille[2][0] != '':
-        return True
-
-    return False
-
-#Quand c'est un match nul
-def match_nul(grille):
-    return isfull(grille) and not winner(grille)
-
-#Permetre le déplacement
-def allow_move(grille, row, col, symbol):
-    if grille[row][col] == '':
-        grille[row][col] = symbol
-        return True
-    else:
-        return False
-
 
 def TicTacToe():
 
